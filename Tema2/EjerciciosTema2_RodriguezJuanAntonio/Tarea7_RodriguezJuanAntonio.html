@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script charset="UTF-8">
+            function miFuncion(){
+                
+                //Se recoge el valor del número pedido
+                var numero = prompt("Dame el número:")
+                numero = Number(numero);
+                //Se inicializa y declara con 1 el resultado
+                var resultado=1;
+                //Bucle for para ir multiplicando el resultado por la i
+                for(let i=2;i<=numero;i++){
+                    resultado = resultado*i;
+                }
+                //Mensaje final
+                alert("El factorial de "+numero+" es "+resultado+".");
+                
+            }
+        </script>
+    </head>
+    <body onload="miFuncion();">
+    </body>
+
+
+</html>

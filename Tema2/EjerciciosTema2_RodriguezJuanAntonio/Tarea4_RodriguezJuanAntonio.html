@@ -4,6 +4,7 @@
         <script charset="UTF-8">
             function miFuncion(){
 
+                //Input en la variable sueldo y antiguedad. Inicialización de la variable prima.
                 var sueldo = prompt("Escribe tu sueldo: ");
                 sueldo = Number(sueldo);
                 var antiguedad = prompt("Escribe tus años de antiguedad: ");
@@ -11,6 +12,7 @@
                 var prima;
                 prima = Number(prima)
 
+                //Comparación de cada posible caso y hacer las operaciones correspondientes
                 if(sueldo<750 && antiguedad>=10){
                     prima = sueldo/10
                 }else if(sueldo>=750 && antiguedad>=10){
@@ -20,6 +22,7 @@
                 }else{
                     alert("Dato inválido.")
                 }
+                //Mensaje final
                 alert("Valor final: "+(sueldo+prima));
                 
             }

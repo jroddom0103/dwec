@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+
+        //Función autoinvocada
+        (function funcionPrincipal() {
+
+            var array = [];
+            var valor;
+
+            do {
+                valor = prompt("Escribe el número que quieres añadir: (Para terminar pulse f)");
+                if (valor >= 0) {
+                    array.push(Number(valor));
+                } else if (array.length < 3) {
+                    alert("Tienes que tener al menos tres números.")
+                } else if (valor != 'f') {
+                    alert("Tienes que introducir un valor válido.")
+                }
+
+            } while (valor != 'f' || array.length <= 1);
+
+            //Llamada a funciones
+            ordenarDatos(array);
+            calcularMedianas(array);
+
+        })();
+
+        //Función que ordena el array numérico de menor a mayor
+        function ordenarDatos(array){
+
+            array.sort((a, b) => a - b);
+
+        }
+
+        //Función que calcula la o las medianas
+        function calcularMedianas(array){
+
+            //Si el resto es 0, es par, y se buscan 2 modas, en el caso de impar, sólo una
+            if(array.length%2==0){
+                alert("Las mediana es "+(array[(array.length/2)-1]+array[(array.length/2)])/2+".")
+            }else{
+                alert("La mediana es "+array[((array.length+1)/2)-1]);
+            }
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

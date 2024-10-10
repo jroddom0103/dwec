@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <head>
+        <script charset="UTF-8">
+
+        //Función que se llama a sí misma para evitar usar variables globales
+        (function miFuncion(){
+
+            //Variables de figura y sus atributos. El -1 sirve como valor inválido.
+            var figura="";
+            var lado=-1;
+            var radio=-1;
+            var altura=-1;
+
+            //El bucle do while sirve para el menú
+            do{
+                //Imprimir menú en pantalla
+                opcion = prompt("Elige la opción adecuada:\n 1. Solicite la figura (cubo, esfera y cilindro).\n 2. Solicite las medidas.\n 3. Mostrar volumen. \n 4. Mostrar área. \n 5. Finalizar programa.");
+                
+            //Elección del menú principal    
+            switch(Number(opcion)){
+
+                //Caso para elegir una figura
+                case 1:
+                    figura = elegirFigura();
+                    break;
+
+                //Caso para elegir medidas según la figura    
+                case 2:
+                    if(figura=="Cubo"){
+                        lado = medidaLado(lado);
+                    }else if(figura=="Esfera"){
+                        radio = medidaRadio(radio);
+                    }else if(figura=="Cilindro"){
+                        radio = medidaRadio(radio);
+                        altura = medidaAltura(altura);
+                    }else{
+                        lado=-1;
+                        radio=-1;
+                        altura=-1;
+                        alert("Selecciona una figura antes.")
+                    }
+                    break;
+                   
+                //Caso que calcula los volúmenes
+                case 3:
+
+
+                    if(lado>=0 && figura=="Cubo"){
+                        volumenCubo(lado);
+                    }else if(radio>=0 && figura=="Esfera"){
+                        volumenEsfera(radio);
+                    }else if(radio>=0 && figura=="Cilindro"){
+                        volumenCilindro(radio,altura);
+                    }else{
+                        alert("No seleccionaste una opción previa.")
+                    }
+                    break;
+                
+                //Caso que calcula las áreas
+                case 4:
+
+                if(lado>=0 && figura=="Cubo"){
+                        areaCubo(lado);
+                    }else if(radio>=0 && figura=="Esfera"){
+                        areaEsfera(radio);
+                    }else if(radio>=0 && figura=="Cilindro"){
+                        areaCilindro(radio,altura);
+                    }else{
+                        alert("No seleccionaste una opción previa.")
+                    }
+                    break;
+                
+                //Caso que cierra el programa    
+                case 5:
+
+                    alert("Cerrando programa...")
+                    break;    
+            }
+            }while(opcion!=5);
+            
+        })();
+
+            //Función para elegir la figura
+            function elegirFigura(){
+                        var opcion = prompt("Elige la figura:\n 1. Cubo.\n 2. Esfera.\n 3. Cilindro.");
+                        opcion = Number(opcion);
+                        switch(opcion){
+                            //Caso que selecciona el cubo
+                            case 1:
+                                figura = "Cubo";
+                                return figura;
+                                break;
+                            //Caso que selecciona la esfera    
+                            case 2:
+                                figura = "Esfera";
+                                return figura;
+                                break;
+                            //Caso que selecciona el cilindro    
+                            case 3:        
+                                figura = "Cilindro";
+                                return figura;
+                                break;
+                            //Caso por valor inválido    
+                            default:
+                                figura = "";
+                                alert("Introduce un valor válido.");
+                                return figura;
+                                break;    
+                        }
+            };
+        
+            //Función para recoger valor del lado
+            function medidaLado(lado){
+                
+                lado = prompt("Di cuánto mide el lado en cm:")
+                if(lado>=0){
+                    return lado;
+                }else{
+                    alert("Tiene que ser un número positivo.")
+                }
+                        
+            };    
+
+            //Función para recoger valor del radio
+            function medidaRadio(radio){
+
+            radio = prompt("Di cuánto mide el radio en cm:")
+            if(radio>=0){
+                return radio;
+            }else{
+            alert("Tiene que ser un número positivo.")
+            }
+
+            };
+
+            //Función para recoger valor de la altura
+            function medidaAltura(altura){
+                altura = prompt("Di cuánto mide la altura en cm:")
+                if(altura>=0){
+                    return altura;
+                }else{
+                    alert("Tiene que ser un número positivo.")
+                }
+            };
+
+            //Función que calcula el volumen del cubo e imprime por pantalla
+            function volumenCubo(lado){
+                var volumen = lado*lado*lado;
+                alert("El volumen del cubo es de "+volumen.toFixed(2)+" cm cúbicos.")
+            };
+
+            //Función que calcula el volumen de la esfera e imprime por pantalla
+            function volumenEsfera(radio){
+                var volumen = (4*Math.PI*Math.pow(radio,3))/3;
+                alert("El volumen de la esfera es de "+volumen.toFixed(2)+" cm cúbicos.")
+            };
+
+            //Función que calcula el volumen del cilindro e imprime por pantalla
+            function volumenCilindro(radio, altura){
+                var volumen = Math.PI*Math.pow(radio,2)*altura;
+                alert("El volumen del cilindro es de "+volumen.toFixed(2)+" cm cúbicos.")
+            };
+
+            //Función que calcula el área del cubo e imprime por pantalla
+            function areaCubo(lado){
+                var area = lado*lado*6;
+                alert("El área del cubo es "+area.toFixed(2)+" cm cuadrados.")
+            };
+
+            //Función que calcula el área de la esfera e imprime por pantalla
+            function areaEsfera(radio){
+                var area = 4*Math.PI*Math.pow(radio,2);
+                alert("El área de la esfera es "+area.toFixed(2)+" cm cuadrados.")
+            };
+
+            //Función que calcula el área del cilindro e imprime por pantalla
+            function areaCilindro(radio, altura){
+                var area = 2*Math.PI*radio*(radio+altura);
+                alert("El área del cilindro es "+area.toFixed(2)+" cm cuadrados.")
+            };
+
+
+        </script>
+    </head>
+
+    <body>
+    </body>
+
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function menuFuncion() {
+
+            var array = [];
+            var valor;
+
+            do {
+                valor = prompt("Escribe el número que quieres añadir: (Para terminar pulse f)");
+                if (valor >= 0) {
+                    array.push(Number(valor));
+                } else if (array.length < 2) {
+                    alert("Tienes que tener al menos dos números.")
+                } else if (valor != 'f') {
+                    alert("Tienes que introducir un valor válido.")
+                }
+
+            } while (valor != 'f' || array.length <= 1);
+
+            calcularMedia(array);
+            calcularRango(array);
+            calcularModa(array);
+
+        })()
+
+        function calcularMedia(array) {
+
+            var media = 0;
+            for (i = 0; i < array.length; i++) {
+                media = media + array[i];
+            }
+            media = media / array.length;
+            alert("La media es " + media + ".");
+        }
+
+        function calcularRango(array) {
+
+            var copia;
+
+            for (i = 0; i < array.length; i++) {
+                for (x = i + 1; x < array.length; x++) {
+                    if (array[i] > array[x]) {
+                        copia = array[i];
+                        array[i] = array[x];
+                        array[x] = copia;
+                    }
+                }
+            }
+
+            alert("El rango es " + (array[array.length - 1] - array[0]) + ".");
+        }
+
+        //Casos de la moda
+
+        //1. Ej (2,1,2,3,5,6) -> M=2
+        //2. Ej (3,1,1,3,2,5) -> M = 1,3,... (Si tiene un número entre medio de los introducidos)
+        //3. Ej (3,1,3,5,6,5) -> M = (3+5)/2 = 4 Media (Si no hay un número entre medio de los introducidos, sólo en caso de 2 medias)
+        //4. Ej (2,1,3,6,5) -> M = "No hay" (No se repite ningún número)
+        //5. Ej (2,1,3,3,1,2,5,5) -> M = "No tiene" (Se repiten los números las mismas veces)
+
+        function calcularModa(array) {
+            
+            var modas = [];
+            var frecuencias = [];
+
+            for(i=0;i<array.length;i++){
+                
+                if(i==0){
+                    frecuencias[i]=1;
+                }
+
+                if(i>0 && array[i]==array[i-1]){
+                    for(j>0;array[j];j++){
+
+                    }
+                }       
+
+                for(j=0;j<frecuencias.length;j++){
+                    if(frecuencias[j]===array[i]){
+                        array[i]++;                        
+                }
+                }     
+            }
+
+            for(i=0;i<frecuencias;i++){
+                var copia=0;
+                if(frecuencias[i]>copia){
+                    copia == frecuencias[i];
+                }
+                modas.push[copia];
+            }
+
+            if(modas.length==1){
+                alert("Sólo hay una moda.");
+            }
+        }
+        
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

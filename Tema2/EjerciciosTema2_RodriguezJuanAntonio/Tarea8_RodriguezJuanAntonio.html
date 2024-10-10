@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script charset="UTF-8">
+            function miFuncion(){
+
+                //Declaración de variables
+                var valor1 = prompt("Dime un número positivo:")
+                valor1 = Number(valor1);
+                var valorCopia = valor1;
+                var primos="";
+                    
+                //La descomposición no se puede hacer con el número 1 y números inferiores
+                if(valor1<=1){
+                    alert("No tiene descomposición.")
+                //La descomposición se hace con números mayores que 1    
+                }else if(valor1>1){
+                    //Hasta que no sea 1 el valor, continua el bucle
+                    do
+                    for(let i=2;i<=valor1;i++){
+                        //Si el resto de la división de los números es = 0, se realiza la operación 
+                        while(valor1%i==0){
+                            valor1 = valor1/i;
+                            primos = primos+" * "+i;
+                        }
+                        
+                    }
+                    while(valor1>1);
+                }
+                //Si el valor = 1, entonces ya terminó el programa y se imprime el mensaje final
+                if(valor1==1){
+                    alert("El número "+valorCopia+" se descompone en los números"+primos+".");  
+                }
+                
+            }
+        </script>
+    </head>
+    <body onload="miFuncion();">
+    </body>
+
+
+</html>
