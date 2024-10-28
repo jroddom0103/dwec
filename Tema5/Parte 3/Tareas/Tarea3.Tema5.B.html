@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea3.Tema5</title>
+
+    <script>
+
+        function funcionPrincipal() {
+
+            class Menu {
+
+                #cesta;
+                #cod = 0;
+
+                constructor(cesta = []) {
+                    this.#cesta = cesta;
+                    this.#cod = this.#cod + 1;
+                }
+
+                mostrarMenu() {
+
+                    do {
+
+                        //Mostrar y recoger datos del menú
+                        var valor = prompt("1. Ver cesta.\n 2. Insertar un artículo.\n 3. Borrar un artículo.\n 4. Vaciar cesta.\n 5. Salir.");
+                        if (valor == undefined) {
+                            alert("Cerrando.")
+                            return;
+                        } else if (valor != '1' && valor != '2' && valor != '3' && valor != '4' && valor != '5') {
+                            alert("Introdujiste un valor que no es válido.");
+                        }
+
+                        //Estructura de control switch
+                        switch (valor) {
+                            //Mostrar cesta
+                            case '1':
+                                if (this.#cesta.length == 0) {
+                                    alert("No hay artículos en la cesta.")
+                                } else {
+                                    mostrarCesta();
+                                }
+                                break;
+                            //Insertar artículo    
+                            case '2':
+                                insertarArticulo();
+                                break;
+                            //Borrar artículo
+                            case '3':
+                                borrarArticulo();
+                                break;
+                            //Vaciar cesta    
+                            case '4':
+                                vaciarCesta();
+                                break;
+                            //Salir    
+                            case '5':
+                                alert("Cerrando.")
+                                return;
+                        }
+
+                    } while (true);
+                }
+
+                //Función insertar artículo
+                insertarArticulo() {
+                    this.#cod;
+                    var nombre;
+                    var precio;
+                    var cantidad;
+                    var cont = 0;
+
+                    //Recoger valores de la cesta
+                    do {
+                        cantidad = prompt("Di el nombre del artículo:");
+                        if (nom == undefined) {
+                            return;
+                        }
+                        precio = prompt("Di el precio del artículo:");
+                        if (precio == undefined) {
+                            return;
+                        }
+                        cantidad = prompt("Di la cantidad del artículo:");
+                        if (cantidad == undefined) {
+                            return;
+                        }
+
+                        if (!isNaN(precio) && !isNaN(cantidad)) {
+                            precio = Number(precio);
+                            cantidad = Number(cantidad);
+                            articulo = new Articulo(cod, nombre, precio, cantidad);
+                            this.#cesta.push(articulo);
+                            return;
+                        } else {
+                            alert("Has introducido un dato erróneo.")
+                        }
+
+                    } while (true);
+
+
+                }
+            }
+
+            class Articulo {
+                #cod;
+                #nombre;
+                #precio;
+                #cantidad;
+
+                constructor(cod, nombre, precio, cantidad) {
+                    this.#cod = cod;
+                    this.#nombre = nombre;
+                    this.#precio = precio;
+                    this.#cantidad = cantidad;
+                }
+            }
+            cesta = new Menu();
+
+            do {
+                cesta.mostrarMenu();
+                return;
+            } while (true);
+        }
+
+    </script>
+</head>
+
+<body onload="funcionPrincipal();">
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+
+        //Función autoinvocada
+        (function funcionPrincipal() {
+
+            //Declaración de variables
+            var array = [[]];
+            var valor="";
+            var bucle = true;
+            var criterio = 1;
+
+            //Menú que no terminará hasta introducir f
+            do {
+                valor = prompt("Notas del criterio "+criterio+": (Para ir al siguiente criterio pulse s) (Para terminar pulse f)");
+                if(valor==null){
+                    
+                    return 0;  
+                    
+                }else if (valor>=0 || valor<0) {
+                    //Introducción del valor en el valor de esa fila
+                    array[array.length - 1].push(Number(valor));
+                    //Pasar a la siguiente fila
+                } else if (valor == 's') {
+                    array.push([]);
+                    //Salir del bucle
+                } else if (valor == 'f') {
+                    bucle = false;
+                    //Correción de excepciones
+                } else if (valor != 'f' && valor != 's') {
+                    console.log(valor);
+                    alert("Tienes que introducir un valor válido.");
+                }
+
+            } while (bucle);
+
+            //Llamada a función
+            funcionCalculos(array);
+
+        })();
+
+        //Función que separa los valores en dos arrays dependiendo de si son pares o impares
+        function funcionCalculos(array) {
+            
+            //Declaración de variables
+            var mensMedias = "Medias: ";
+            var media;
+            var suma=0;
+            var extra;
+
+            //Bucle que calcula la medias
+            for(i=0;i<array.length;i++){
+                //Suma de valores de cada fila
+                for(j=0;j<array[i].length;j++){
+                    suma = suma + array[i][j]
+                    extra=array[i].length;
+                }
+                //Cálculo de media
+                media = suma/extra;
+                media.toFixed(1);
+                mensMedias = mensMedias+" | "+media+" | ";
+                suma=0;
+            }
+            alert(mensMedias);
+
+
+            //Declaración de array y mensaje
+            var maximos = [];
+            var mensMax = "Máximos ";
+
+            //Cálculo del máximo con función Math.max
+            array.forEach(subArray => {
+                maximos.push(Number(Math.max(...subArray)));
+            });
+
+            //Formato de salida del mensaje
+            for (i = 0; i < maximos.length; i++) {
+                mensMax = mensMax+" | "+maximos[i]+" | ";
+            }
+
+            //Mostrar por consola los máximos
+            console.log(mensMax);
+
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

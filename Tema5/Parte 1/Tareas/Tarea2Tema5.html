@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+
+        //Función autoinvocada
+        (function funcionPrincipal() {
+
+            //Declaración de variables
+            var array = [[]];
+            var valor;
+            var bucle = true;
+
+            //Menú que no terminará hasta introducir f
+            do {
+                valor = prompt("Escribe el número que quieres añadir: (Para saltar a la siguiente fila pulse g) (Para terminar pulse f)");
+                if (valor >= 0 || valor < 0) {
+                    //Introducción del valor en el valor de esa fila
+                    array[array.length - 1].push(Number(valor));
+                    //Pasar a la siguiente fila
+                } else if (valor == 'g') {
+                    array.push([]);
+                } else if (valor == 'f') {
+                    bucle = false;
+                } else if (valor != 'f' && valor != 'g') {
+                    alert("Tienes que introducir un valor válido.");
+                }
+
+            } while (bucle);
+
+            //Llamada a función
+            funcionSeparadora(array);
+
+
+
+        })();
+
+        //Función que separa los valores en dos arrays dependiendo de si son pares o impares
+        function funcionSeparadora(array) {
+
+            //Declaración de arrays y strings
+            var pares = [];
+            var impares = [];
+            var mensPar = "Pares: ";
+            var mensImpar = "Impares: ";
+
+            //Lectura del array e introducción en los nuevos arrays
+            array.forEach(subArray => {
+                subArray.forEach(num => {
+                    if (num % 2 === 0) {
+                        pares.push(num);
+                    } else {
+                        impares.push(num);
+                    }
+                });
+            });
+
+
+            //Formato de salida de los mensajes
+            for (i = 0; i < pares.length; i++) {
+                mensPar = mensPar+" | "+pares[i]+" | ";
+            }
+
+            for (i = 0; i < impares.length; i++) {
+                mensImpar = mensImpar+" | "+impares[i]+" | ";
+            }
+
+            //Mostrar por pantalla los mensajes
+            alert(mensPar);
+            alert(mensImpar);
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
