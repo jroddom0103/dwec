@@ -10,16 +10,20 @@
 
         function funcionPrincipal() {
 
+            // Clase Menú
             class Menu {
 
+                // Variables
                 #cesta;
                 #cod = 0;
 
+                // Método Constructor
                 constructor(cesta = []) {
                     this.#cesta = cesta;
                     this.#cod = this.#cod + 1;
                 }
 
+                // Método que muestra el menú de forma indefinida
                 mostrarMenu() {
 
                     do {
@@ -40,20 +44,20 @@
                                 if (this.#cesta.length == 0) {
                                     alert("No hay artículos en la cesta.")
                                 } else {
-                                    mostrarCesta();
+                                    this.#mostrarCesta();
                                 }
                                 break;
                             //Insertar artículo    
                             case '2':
-                                insertarArticulo();
+                                this.#insertarArticulo();
                                 break;
                             //Borrar artículo
                             case '3':
-                                borrarArticulo();
+                                this.#borrarArticulo();
                                 break;
                             //Vaciar cesta    
                             case '4':
-                                vaciarCesta();
+                                this.#vaciarCesta();
                                 break;
                             //Salir    
                             case '5':
@@ -64,9 +68,23 @@
                     } while (true);
                 }
 
-                //Función insertar artículo
-                insertarArticulo() {
-                    this.#cod;
+                //Método que muestra cesta
+                #mostrarCesta() {
+                    var suma = 0;
+                    var mensaje = "Código | Nombre | Precio | Cantidad | Subtotal";
+
+                    //Concatenación de variables para mostrar el mensaje que muestre la cesta
+                    this.#cesta.forEach(articulo => {
+                        mensaje = mensaje + "\n" + articulo.getCod() + "     |     " + articulo.getNombre() + "     |     " + articulo.getPrecio() + "     |     " + articulo.getCantidad() + "     |     " + (articulo.getPrecio() * articulo.getCantidad());
+                        suma = suma + (articulo.getPrecio() * articulo.getCantidad());
+                    });
+                    mensaje = mensaje + "\n                                                      Total |" + suma;
+                    alert(mensaje);
+
+                }
+
+                //Método que inserta artículo
+                #insertarArticulo() {
                     var nombre;
                     var precio;
                     var cantidad;
@@ -74,8 +92,8 @@
 
                     //Recoger valores de la cesta
                     do {
-                        cantidad = prompt("Di el nombre del artículo:");
-                        if (nom == undefined) {
+                        nombre = prompt("Di el nombre del artículo:");
+                        if (nombre == undefined) {
                             return;
                         }
                         precio = prompt("Di el precio del artículo:");
@@ -87,11 +105,12 @@
                             return;
                         }
 
+                        //Verificador que asegura que precio y cantidad sean valores numéricos
                         if (!isNaN(precio) && !isNaN(cantidad)) {
                             precio = Number(precio);
                             cantidad = Number(cantidad);
-                            articulo = new Articulo(cod, nombre, precio, cantidad);
-                            this.#cesta.push(articulo);
+                            this.#cesta.push(new Articulo(this.#cod, nombre, precio, cantidad));
+                            this.#cod++;
                             return;
                         } else {
                             alert("Has introducido un dato erróneo.")
@@ -101,27 +120,57 @@
 
 
                 }
+
+                //Método que borra un artículo
+                #borrarArticulo() {
+                    var idArticuloBorrar = prompt("Dime el id del artículo que quieras borrar:");
+                    this.#cesta.splice(idArticuloBorrar - 1, 1);
+                }
+
+                //Método que vacía la cesta
+                #vaciarCesta() {
+                    this.#cesta = [];
+                }
             }
 
+            // Clase Artículo
             class Articulo {
+                // Variables
                 #cod;
                 #nombre;
                 #precio;
                 #cantidad;
 
+                // Método constructor
                 constructor(cod, nombre, precio, cantidad) {
                     this.#cod = cod;
                     this.#nombre = nombre;
                     this.#precio = precio;
                     this.#cantidad = cantidad;
                 }
-            }
-            cesta = new Menu();
 
-            do {
-                cesta.mostrarMenu();
-                return;
-            } while (true);
+                // Métodos getter
+                getCod() {
+                    return this.#cod;
+                }
+
+                getNombre() {
+                    return this.#nombre;
+                }
+
+                getPrecio() {
+                    return this.#precio;
+                }
+
+                getCantidad() {
+                    return this.#cantidad;
+                }
+
+            }
+
+            // Creación del objeto menú y llamada al método
+            menu = new Menu();
+            menu.mostrarMenu();
         }
 
     </script>
