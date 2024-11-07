@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>2.1 Calculadora Básica</title>
+  <title>6.1</title>
   <!-- css bootstrap 533 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -25,81 +25,33 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"> </script>
   <script>
-    // Clase Vehículo
-    class Vehiculo {
-      // Variables
-      #matricula;
-      #fechaMatriculacion;
-      #numBastidor;
-
-      // Método constructor
-      constructor(matricula, fechaMatriculacion, numBastidor) {
-        this.#matricula = matricula;
-        this.#fechaMatriculacion = fechaMatriculacion;
-        this.#numBastidor = numBastidor;
-      }
-
-      // Métodos getter
-      getMatricula() {
-        return this.#matricula;
-      }
-
-      getFechaMatriculacion() {
-        return this.#fechaMatriculacion;
-      }
-
-      getNumBastidor() {
-        return this.#numBastidor;
-      }
-
-    }
-
     // Clase Titular
-    class Titular {
-      // Variables
-      #nombre;
-      #apellidos;
-      #domicilio;
-      #dni;
-      #correoE;
-      #tlf;
+    class Formulario {
 
       // Método constructor
-      constructor(nombre, apellidos, domicilio, dni, correoE, tlf) {
-        this.#nombre = nombre;
-        this.#apellidos = apellidos;
-        this.#domicilio = domicilio;
-        this.#dni = dni;
-        this.#correoE = correoE;
-        this.#tlf = tlf;
-      }
+      constructor() {
 
-      // Métodos getter
-      getNombre() {
-        return this.#nombre;
-      }
 
-      getApellidos() {
-        return this.#apellidos;
-      }
-
-      getDomicilio() {
-        return this.#domicilio;
-      }
-
-      getDni() {
-        return this.#dni;
-      }
-
-      getCorreoE() {
-        return this.#correoE;
-      }
-
-      getTlf() {
-        return this.#tlf;
+        //var matri = document.getElementById("matri");
+        //matri.addEventListener("keyup",this.#valida.bind(this))
       }
 
     }
+
+    function valida() {
+      var inp = document.getElementById("inp");
+      var mensa = document.getElementById("mensa");
+      if (!inp.checkValidity()) {
+        mensa.innerHTML = "Dato inválido";
+      } else {
+        mensa.innerHTML = "";
+      }
+    }
+    function fEvento() {
+      var formu = document.getElementById("bot");
+      formu.addEventListener('click', valida);  //Añade control evento 'clic'  
+    }
+    window.onload = fEvento;
 
     $(document).ready(function () {
       $('#elegirFecha').datepicker({
@@ -109,6 +61,8 @@
       });
     });
 
+    var e = new Principal();
+    window.onload = e.fEvento.bind(e);
   </script>
 
 </head>
@@ -129,12 +83,12 @@
         <h3>Datos del vehículos:</h3>
         <div class="col-md-4 mb-2">
           <label for="exampleInputEmail1" class="form-label">Matrícula:</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="email" class="form-control" id="inp" aria-describedby="emailHelp">
         </div>
         <div class="col-md-4 mb-2">
           <label for="elegirFecha" class="form-label"><i class="bi bi-calendar"></i> Fecha de matriculación</label>
           <div class="input-group datepicker-container">
-            <input type="text" class="form-control custom-datepicker" id="elegirFecha" readonly />
+            <input type="text" class="form-control custom-datepicker" id="elegirFecha" onclick="static$" readonly />
 
           </div>
         </div>
