@@ -30,7 +30,7 @@
 
       // Método constructor
       constructor() {
-
+        this.#fEvento();
 
         //var matri = document.getElementById("matri");
         //matri.addEventListener("keyup",this.#valida.bind(this))
@@ -64,6 +64,10 @@
     var e = new Principal();
     window.onload = e.fEvento.bind(e);
   </script>
+
+  window.onload = function(){new Principal()}
+  window.onload = valida();
+  window.addEventListener('load',()=>new Principal());
 
 </head>
 
