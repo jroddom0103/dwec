@@ -24,13 +24,17 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"> </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"> </script>
+  <style>
+    input:invalid {border: 1px solid red;}
+    input:valid {border: 1px solid green;}
+  </style>
   <script>
     // Clase Titular
     class Formulario {
 
       // Método constructor
       constructor() {
-        this.#fEvento();
+        this.fEvento();
 
         //var matri = document.getElementById("matri");
         //matri.addEventListener("keyup",this.#valida.bind(this))
@@ -61,18 +65,19 @@
       });
     });
 
-    var e = new Principal();
-    window.onload = e.fEvento.bind(e);
+    // var e = new Principal();
+    // window.onload = e.fEvento.bind(e);
+    window.addEventListener('load',()=>new Formulario());
   </script>
 
-  window.onload = function(){new Principal()}
-  window.onload = valida();
-  window.addEventListener('load',()=>new Principal());
+  <!-- window.onload = function(){new Principal()} -->
+  <!-- window.onload = valida(); -->
+  
 
 </head>
 
 <body>
-  <!-- capa principal  -->
+  <!-- capa principal -->
   <div class="container">
 
     <!-- cabecera documento -->
@@ -87,56 +92,56 @@
         <h3>Datos del vehículos:</h3>
         <div class="col-md-4 mb-2">
           <label for="exampleInputEmail1" class="form-label">Matrícula:</label>
-          <input type="email" class="form-control" id="inp" aria-describedby="emailHelp">
+          <input type="text" class="form-control" id="inp" aria-describedby="emailHelp" required name="matricula">
         </div>
         <div class="col-md-4 mb-2">
           <label for="elegirFecha" class="form-label"><i class="bi bi-calendar"></i> Fecha de matriculación</label>
           <div class="input-group datepicker-container">
-            <input type="text" class="form-control custom-datepicker" id="elegirFecha" onclick="static$" readonly />
+            <input type="text" class="form-control custom-datepicker" id="elegirFecha" onclick="static$" required name="fecha_Matriculacion"/>
 
           </div>
         </div>
         <div class="col-md-4 mb-2">
           <label for="exampleInputEmail1" class="form-label">6 últimos dígitos(nº bastidor)</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="123456" pattern="[0-9]{6}">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="123456" pattern="[0-9]{6}" required name="num_Bastidor">
         </div>
         <h3>Datos del titular:</h3>
         <div class="col-md-4 mb-2">
           <label for="exampleInputEmail1" class="form-label">Nombre:</label>
-          <input type="text" class="form-control" id="exampleInputEmail1">
+          <input type="text" class="form-control" id="exampleInputEmail1" required name="nombre">
         </div>
         <div class="col-md-4 mb-2">
           <label for="exampleInputEmail1" class="form-label">Apellidos:</label>
-          <input type="text" class="form-control" id="exampleInputEmail1">
+          <input type="text" class="form-control" id="exampleInputEmail1" required name="apellidos">
         </div>
         <div class="col-md-4 mb-2">
           <label for="exampleInputEmail1" class="form-label">Domicilio:</label>
-          <input type="text" class="form-control" id="exampleInputEmail1">
+          <input type="text" class="form-control" id="exampleInputEmail1" required name="domicilio">
         </div>
         <div class="col-md-3 mb-2">
           <label for="exampleInputEmail1" class="form-label">DNI:</label>
           <input type="text" class="form-control" id="exampleInputEmail1" placeholder="12345678A"
-            pattern="[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]">
+            pattern="[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]" required name="dni">
         </div>
         <div class="col-md-3 mb-2">
           <label for="exampleInputEmail1" class="form-label">Correo electrónico:</label>
-          <input type="email" class="form-control" id="exampleInputEmail1">
+          <input type="email" class="form-control" id="exampleInputEmail1" required name="correo_Electronico">
         </div>
         <div class="col-md-3 mb-2">
           <label for="exampleInputEmail1" class="form-label">Tlf:</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="123456789" pattern="[0-9]{9}">
+          <input type="text" class="form-control" id="exampleInputEmail1" placeholder="123456789" pattern="[0-9]{9}" required name="telefono">
         </div>
 
         <div class="col-md-3 mb-2">
           <h4>Tipo de baja:</h4>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault1">
             <label class="form-check-label" for="flexRadioDefault1">
               Temporal
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" checked>
             <label class="form-check-label" for="flexRadioDefault2">
               Definitiva
             </label>

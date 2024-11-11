@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2 Tema6</title>
+
+    <style type="text/css">
+        input:invalid {
+            border: 1px solid red;
+        }
+
+        input:valid {
+            border: 1px solid green;
+        }
+    </style>
+
+    <script>
+        class Formulario {
+
+            #usuarios = [
+                { user: 'Juan', pass: 'aB123456' },
+                { user: 'Pepe', pass: 'bA123456' },
+                { user: 'Lucas', pass: 'cD6948282930' }
+            ];
+
+            constructor() {
+                this.fEvento();
+            }
+
+            valida() {
+                var mensaje = document.getElementById("u");
+                var contraseña = document.getElementById("p");
+                if (!contraseña.checkValidity()) {
+                    alert("La contraseña debe tener mínimo un número, una letra mayúscula, otra minúscula, y al menos 8 caracteres.");
+                } else {
+                    alert("");
+                }
+            }
+
+            fEvento() {
+                var formulario = document.getElementById("boton");
+                formulario.addEventListener('click', valida);  //Añade control evento 'clic'  
+            }
+
+
+        }
+        window.onload = fEvento;
+    </script>
+</head>
+
+<body>
+    <h1>Inicio Sesión</h1>
+    <form>
+        <div>
+            <label>Usuario:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;Contraseña:</label><br>
+
+            <input type="text" class="form-control" id="u" name="user" required>
+            <input type="text" class="form-control" id="p" name="pass" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$"
+                required>
+
+        </div>
+        <br><button id="boton" type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+</body>
+
+</html>
