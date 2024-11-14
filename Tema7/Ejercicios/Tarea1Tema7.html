@@ -4,7 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tarea1Tema7</title>
+
+    <script>
+
+        class ContProductos{
+            
+        }
+        // Productos disponibles, pueden proceder de una BBDD...
+        var productos=[
+            {id:'1', nombre:'Bolso', precio:'20', ruta:'https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg'},
+            {id:'2', nombre:'Móvil', precio:'120', ruta:''},
+            {id:'3', nombre:'Taza', precio:'10', ruta:''},
+            {id:'4', nombre:'Zapatos', precio:'50.5', ruta:''},
+            {id:'5', nombre:'Vestido', precio:'30', ruta:''},
+            {id:'6', nombre:'Cámara', precio:'100', ruta:''}
+
+        ]
+
+        window.onload=()=>new ContProductos(productos);
+    </script>
 </head>
 
 <body>
@@ -18,7 +37,6 @@
                             <h5 class="card-title">Bolso</h5>
                             <p class="card-text">20€</p>
                             <input data-iduni="1" type="number" max="999" min="1" value="1">
-
                         </div>
                     </div>
                 </div>
