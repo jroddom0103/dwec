@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="wcodth=device-wcodth, initial-scale=1.0">
     <title>Tarea1Tema7</title>
 
     <script>
@@ -11,8 +11,8 @@
         class Producto{
 
             #producto={};
-            constructor(id,nombre,precio,imagen){
-                this.#producto.id=id;
+            constructor(cod,nombre,precio,imagen){
+                this.#producto.cod=cod;
                 this.#producto.nombre=nombre;
                 this.#producto.precio=precio;
                 this.#producto.imagen=imagen;
@@ -29,12 +29,12 @@
         }
         // Productos disponibles, pueden proceder de una BBDD...
         var productos=[
-            {id:'1', nombre:'Bolso', precio:'20', imagen:'https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg'},
-            {id:'2', nombre:'Móvil', precio:'120', imagen:''},
-            {id:'3', nombre:'Taza', precio:'10', imagen:''},
-            {id:'4', nombre:'Zapatos', precio:'50.5', imagen:''},
-            {id:'5', nombre:'Vestido', precio:'30', imagen:''},
-            {id:'6', nombre:'Cámara', precio:'100', imagen:''}
+            {cod:'1', nombre:'Bolso', precio:'20', imagen:'https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg'},
+            {cod:'2', nombre:'Móvil', precio:'120', imagen:''},
+            {cod:'3', nombre:'Taza', precio:'10', imagen:''},
+            {cod:'4', nombre:'Zapatos', precio:'50.5', imagen:''},
+            {cod:'5', nombre:'Vestido', precio:'30', imagen:''},
+            {cod:'6', nombre:'Cámara', precio:'100', imagen:''}
 
         ]
 
@@ -46,13 +46,13 @@
     <div class="container">
         <div class="jumbotron">
             <div class="row">
-                <div id="contProductos" class="col-sm-7 row">
+                <div cod="contProductos" class="col-sm-7 row">
                     <div class="card col-sm4">
                         <div class="card-body">
-                            <img src="https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg" alt="" width="100px" height="100px">
+                            <img src="https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg" alt="" wcodth="100px" height="100px">
                             <h5 class="card-title">Bolso</h5>
                             <p class="card-text">20€</p>
-                            <input data-iduni="1" type="number" max="999" min="1" value="1">
+                            <input data-coduni="1" type="number" max="999" min="1" value="1">
                         </div>
                     </div>
                 </div>
