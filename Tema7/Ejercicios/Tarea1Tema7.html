@@ -8,17 +8,33 @@
 
     <script>
 
+        class Producto{
+
+            #producto={};
+            constructor(id,nombre,precio,imagen){
+                this.#producto.id=id;
+                this.#producto.nombre=nombre;
+                this.#producto.precio=precio;
+                this.#producto.imagen=imagen;
+                return this.#producto;
+            }
+        }
+
+        class Cesta{
+            #itemsCesta=[]; //Inicializa como array
+        }
+
         class ContProductos{
             
         }
         // Productos disponibles, pueden proceder de una BBDD...
         var productos=[
-            {id:'1', nombre:'Bolso', precio:'20', ruta:'https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg'},
-            {id:'2', nombre:'Móvil', precio:'120', ruta:''},
-            {id:'3', nombre:'Taza', precio:'10', ruta:''},
-            {id:'4', nombre:'Zapatos', precio:'50.5', ruta:''},
-            {id:'5', nombre:'Vestido', precio:'30', ruta:''},
-            {id:'6', nombre:'Cámara', precio:'100', ruta:''}
+            {id:'1', nombre:'Bolso', precio:'20', imagen:'https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg'},
+            {id:'2', nombre:'Móvil', precio:'120', imagen:''},
+            {id:'3', nombre:'Taza', precio:'10', imagen:''},
+            {id:'4', nombre:'Zapatos', precio:'50.5', imagen:''},
+            {id:'5', nombre:'Vestido', precio:'30', imagen:''},
+            {id:'6', nombre:'Cámara', precio:'100', imagen:''}
 
         ]
 
