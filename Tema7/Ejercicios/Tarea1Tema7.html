@@ -3,61 +3,123 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="wcodth=device-wcodth, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarea1Tema7</title>
+    <style>
+        .jumbotron {
+            max-height: 180px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
     <script>
 
-        class Producto{
+        class Producto {
 
-            #producto={};
-            constructor(cod,nombre,precio,imagen){
-                this.#producto.cod=cod;
-                this.#producto.nombre=nombre;
-                this.#producto.precio=precio;
-                this.#producto.imagen=imagen;
+            #producto = {};
+            constructor(cod, nombre, precio, imagen) {
+                this.#producto.cod = cod;
+                this.#producto.nombre = nombre;
+                this.#producto.precio = precio;
+                this.#producto.imagen = imagen;
                 return this.#producto;
             }
         }
 
-        class Cesta{
-            #itemsCesta=[]; //Inicializa como array
+        class Cesta {
+            #itemsCesta = [
+                { cod: 1, cantidad: 0 },
+                { cod: 2, cantidad: 0 },
+                { cod: 3, cantidad: 0 },
+                { cod: 4, cantidad: 0 },
+                { cod: 5, cantidad: 0 },
+                { cod: 6, cantidad: 0 }
+            ]; //Inicializa como array
+
+            constructor() {
+
+            }
+
+            addCesta() {
+
+            }
         }
 
-        class ContProductos{
-            
+        class ContProductos {
+            #productos = [];
+            #cesta;
+            constructor(productos) {
+                this.in(productos);
+                this.renderProductos();
+                this.#cesta = new Cesta(this.#productos);
+            }
+
+            in(productos) {
+
+            }
+
+            renderProductos() {
+
+            }
         }
+
         // Productos disponibles, pueden proceder de una BBDD...
-        var productos=[
-            {cod:'1', nombre:'Bolso', precio:'20', imagen:'https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg'},
-            {cod:'2', nombre:'Móvil', precio:'120', imagen:''},
-            {cod:'3', nombre:'Taza', precio:'10', imagen:''},
-            {cod:'4', nombre:'Zapatos', precio:'50.5', imagen:''},
-            {cod:'5', nombre:'Vestido', precio:'30', imagen:''},
-            {cod:'6', nombre:'Cámara', precio:'100', imagen:''}
+        var productos = [
+            { cod: 1, nombre: 'Bolso', precio: 20, imagen: 'https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg' },
+            { cod: 2, nombre: 'Móvil', precio: 120, imagen: 'https://cdn.pixabay.com/photo/2024/10/09/10/37/ai-generated-9107547_1280.png' },
+            { cod: 3, nombre: 'Taza', precio: 10, imagen: 'https://cdn.pixabay.com/photo/2024/07/24/18/13/ai-generated-8919097_1280.jpg' },
+            { cod: 4, nombre: 'Zapatos', precio: 50.5, imagen: 'https://cdn.pixabay.com/photo/2017/02/17/15/50/shoes-2074400_1280.jpg' },
+            { cod: 5, nombre: 'Vestido', precio: 30, imagen: 'https://cdn.pixabay.com/photo/2018/01/13/14/17/isolated-3080170_1280.png' },
+            { cod: 6, nombre: 'Cámara', precio: 100, imagen: 'https://cdn.pixabay.com/photo/2013/07/13/11/29/camera-158262_1280.png' }
 
         ]
 
-        window.onload=()=>new ContProductos(productos);
+        window.onload = () => new ContProductos(productos);
+
+
     </script>
 </head>
 
 <body>
+    <!-- <div class="card-body"></div> -->
+    <!-- <div class="card-title"></div> -->
+
+
     <div class="container">
         <div class="jumbotron">
-            <div class="row">
-                <div cod="contProductos" class="col-sm-7 row">
-                    <div class="card col-sm4">
-                        <div class="card-body">
-                            <img src="https://cdn.pixabay.com/photo/2015/08/10/20/14/purse-883112_1280.jpg" alt="" wcodth="100px" height="100px">
-                            <h5 class="card-title">Bolso</h5>
-                            <p class="card-text">20€</p>
-                            <input data-coduni="1" type="number" max="999" min="1" value="1">
-                        </div>
-                    </div>
-                </div>
+            <h1><img src="https://img.icons8.com/color/48/000000/google-photos.png">De todo ...</h1>
+            <h5>Ejemplo cálculo de cesta o carrito de la compra...</h5>
+        </div>
+
+        <div class="row">
+            <!-- Productos -->
+            <div id="contProductos" class="col-sm-7 row"></div>
+            <!-- Cesta -->
+            <div class="col-sm-5">
+                <h2><img src="https://img.icons8.com/cute-clipart/64/000000/shopping-basket-success.png"></h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cod.</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio(€)</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cesta"></tbody>
+
+                </table>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right"></p>
+                <!-- Precio total Iva -->
+                <p class="text-right"></p>
+
             </div>
         </div>
+
     </div>
 </body>
 
