@@ -15,7 +15,6 @@
             width: 100%;
             height: 180px;
         }
-        
     </style>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -62,146 +61,77 @@
 </body>
 
 <script>
-    class Cesta {
-        #productos; // Lista de productos iniciales
-        #cesta = []; // Productos en el carrito
 
-        //Constructor
-        constructor(productos) {
-            this.#productos = productos;
+    class Cesta{
+        #cesta;
+        #productos;
+
+        constructor(productos){
+            this.#productos=productos;
         }
 
-        //Se añade un producto al carrito
-        anadirCesta(id) {
-            const cantidadInput = document.querySelector(`input[data-iduni='${id}']`);
-            const cantidad = parseInt(cantidadInput.value);
+        anadirCesta(){
 
-            if (cantidad <= 0) {
-                alert("La cantidad debe ser mayor a 0.");
-                return;
-            }
+        }
+    }
 
-            //Se busca el producto por la id
-            const producto = this.#productos.find(prod => prod.cod === id);
-
-            if (!producto) {
-                alert("Producto no encontrado.");
-                return;
-            }
-
-            //Verificación para saber si el producto está en la cesta
-            const verifProducto = this.#cesta.find(prod => prod.cod === id);
-
-            if (verifProducto) {
-                verifProducto.cantidad += cantidad; 
-            } else {
-                this.#cesta.push({ ...producto, cantidad }); 
-            }
-
-            //Actualizar tabla
+    class ContProductos{
+        #productos = [];
+        #cesta;
+        constructor(productos){
+            this.#productos=productos;
+            this.#cesta= new Cesta(this.#productos);
             this.anadirProductos();
         }
 
-        //Actualizar tabla con los productos
-        anadirProductos() {
-            const cont = document.getElementById("cesta");
-            cont.innerHTML = ""; // Limpiar tabla
+        anadirProductos(){
 
-            let total = 0;
-
-            this.#cesta.forEach(producto => {
-                const subtotal = producto.cantidad * producto.precio;
-                total += subtotal;
-
-                const tr = document.createElement("tr");
-
-                tr.innerHTML = `
-                <td>${producto.cod}</td>
-                <td>${producto.nombre}</td>
-                <td>${producto.cantidad}</td>
-                <td>${producto.precio.toFixed(2)} €</td>
-                <td>${subtotal.toFixed(2)} €</td>
-            `;
-
-                cont.appendChild(tr);
-            });
-
-            this.actualizarTotales(total);
-        }
-
-        //Actualizar total y totalIva
-        actualizarTotales(total) {
-            const totalElement = document.getElementById("total");
-            const totalIvaElement = document.getElementById("totalIva");
-
-            const iva = total * 0.21;
-            totalElement.textContent = total.toFixed(2);
-            totalIvaElement.textContent = (total + iva).toFixed(2);
-        }
-
-    }
-
-    class ContProductos {
-        #productos = [];
-        #cesta;
-
-        //Constructor
-        constructor(productos) {
-            this.#productos = productos;
-            this.#cesta = new Cesta(this.#productos);
-            this.anadir();
-        }
-        //Método para añadir artículos dinámicamente
-        anadir() {
             var cont = document.getElementById("contProductos");
-            for (let i = 0; i < this.#productos.length; i++) {
-                
 
+            productos.forEach(producto => {
                 var card = document.createElement("div");
-                card.setAttribute("class", "card col-sm-4");
+                card.setAttribute("class", "card col-sm-4")
 
                 var cardBody = document.createElement("div");
-                cardBody.setAttribute("class", "card-body");
+                cardBody.setAttribute("class", "card-body")
 
                 var img = document.createElement("img");
-                img.setAttribute("src", this.#productos[i].imagen);
-                img.setAttribute("class", "card-img-top");
-                img.setAttribute("alt", this.#productos[i].nombre);
+                img.setAttribute("src",producto.imagen);
+                img.setAttribute("class", "card-img-top")
+                img.setAttribute("alt",producto.nombre);
 
                 var title = document.createElement("h5");
                 title.setAttribute("class", "card-title");
-                title.textContent = this.#productos[i].nombre;
+                title.textContent = producto.nombre;
 
-                var price = document.createElement("p");
-                price.setAttribute("class", "card-text");
-                price.textContent = `${this.#productos[i].precio}€`;
+                var precio = document.createElement("p");
+                precio.setAttribute("class", "card-text");
+                precio.textContent = producto.precio;
 
                 var input = document.createElement("input");
                 input.setAttribute("type", "number");
                 input.setAttribute("value", "1");
                 input.setAttribute("min", "1");
-                input.setAttribute("style", "width:80px; margin-bottom:10px;");
-                input.setAttribute("data-iduni", this.#productos[i].cod);
-
+                input.setAttribute("style", "width:70px; margin-bottom:10px;")
+                input.setAttribute("data-iduni", producto.cod);
 
                 var button = document.createElement("button");
                 button.setAttribute("class", "btn btn-primary");
                 button.textContent = "Añadir";
-                button.addEventListener("click", this.#cesta.anadirCesta.bind(this.#cesta, this.#productos[i].cod));
-
-                //Añadir elementos a cardBody
+                button.addEventListener("click", this.#cesta.anadirCesta.bind(this.#cesta,producto.cod));
+        
                 cardBody.appendChild(img);
                 cardBody.appendChild(title);
-                cardBody.appendChild(price);
+                cardBody.appendChild(precio);
                 cardBody.appendChild(input);
                 cardBody.appendChild(button);
 
-                //Añadir cuerpo de la tarjeta a la tarjeta
                 card.appendChild(cardBody);
 
-                //Añadir card al cont de los productos
                 cont.appendChild(card);
-            }
+
+            });
+
         }
     }
 
