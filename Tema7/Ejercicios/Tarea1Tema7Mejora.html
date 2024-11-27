@@ -108,38 +108,9 @@
 
         // Actualizar tabla HTML con los productos de la cesta
         mostrarCesta() {
-            var con = document.getElementById("cesta");
-            con.innerHTML = ""; // Limpiar tabla
-
-            var total = 0;
-
-            this.#cesta.forEach(producto => {
-                var subtotal = producto.cantidad * producto.precio;
-                total += subtotal;
-
-                var tr = document.createElement("tr");
-
-                tr.innerHTML = `
-                <td>${producto.cod}</td>
-                <td>${producto.nombre}</td>
-                <td>${producto.cantidad}</td>
-                <td>${producto.precio.toFixed(2)} €</td>
-                <td>${subtotal.toFixed(2)} €</td>
-                <td>
-                    <button class="btn btn-danger btn-lg btn-eliminar" data-id="${producto.cod}">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </td>
-            `;
-
-                con.appendChild(tr);
-
-                var botonEliminar = tr.querySelector(".btn-eliminar");
-                botonEliminar.addEventListener("click", () => this.eliminarProducto(producto.cod));
-            });
-
-            this.actualizarTotales(total);
-
+            var total = 15;
+            var filas = new FilaItem(this.#cesta, total);
+            this.actualizarTotales(filas.total);
 
         }
 
@@ -149,8 +120,8 @@
             var totalIvaElemento = document.getElementById("totalIva");
 
             var iva = total * 0.21;
-            totalElemento.textContent = total.toFixed(2);
-            totalIvaElemento.textContent = (total + iva).toFixed(2);
+            totalElemento.textContent = total;
+            totalIvaElemento.textContent = (total + iva);
         }
 
         // Eliminar un producto del carrito
@@ -220,6 +191,50 @@
                 card.appendChild(cardBody);
                 cont.appendChild(card);
             }
+        }
+    }
+
+    class FilaItem {
+        #total;
+        #cesta;
+        #productos;
+
+        constructor(cesta,total) {
+            this.#cesta = cesta;
+            this.crearFilas();
+            this.#total=total;
+        }
+
+        crearFilas() {
+            var subtotal;
+            var con = document.getElementById("cesta");
+            con.innerHTML = ""; // Limpiar tabla
+
+            this.#cesta.forEach(producto => {
+                subtotal = producto.cantidad * producto.precio;
+                this.#total += subtotal;
+
+                var tr = document.createElement("tr");
+
+                tr.innerHTML = `
+                <td>${producto.cod}</td>
+                <td>${producto.nombre}</td>
+                <td>${producto.cantidad}</td>
+                <td>${producto.precio.toFixed(2)} €</td>
+                <td>${subtotal.toFixed(2)} €</td>
+                <td>
+                    <button class="btn btn-danger btn-lg btn-eliminar" data-id="${producto.cod}">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </td>
+            `;
+
+                con.appendChild(tr);
+
+                var botonEliminar = tr.querySelector(".btn-eliminar");
+                botonEliminar.addEventListener("click", () => this.eliminarProducto(producto.cod));
+                
+            });
         }
     }
 
