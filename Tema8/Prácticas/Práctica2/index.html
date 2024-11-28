@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+
+        var cadena = `<?xml version="1.0" encoding="UTF-8"?>
+ <cine>
+    <pelicula categoria="acción">
+           <titulo idioma="ingles">Mad Max</titulo>
+            <director>George Miller</director>
+            <estreno>15 mayo 2015</estreno>
+            <reparto>Charlize Theron</reparto>
+     </pelicula>
+     <pelicula categoria="animacion">
+            <titulo idioma="ingles">Inside Out</titulo>
+       	<reparto>Amy Poehler</reparto>
+</pelicula>
+ </cine>
+ </xml>
+
+        `
+
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(cadena, "text/xml");
+        alert(xmlDoc.getElementsByTagName("pelicula").length); // Muestra 2 
+        alert(xmlDoc.getElementsByTagName("titulo")[0].childNodes[0].nodeValue); // Muestra 'Mad Max'
+        alert(xmlDoc.getElementsByTagName("titulo")[0].attributes[0].nodeValue); // Muestra 'ingles'
+        alert(xmlDoc.getElementsByTagName("titulo")[0].getAttribute("idioma")); // Muestra 'ingles'
+        xmlDoc.getElementsByTagName("titulo")[0].childNodes[0].nodeValue = "Mad Max 2"; // Cambia el valor del nodo
+        xmlDoc.getElementsByTagName("titulo")[0].setAttribute("idioma", "frances"); // Cambia el valor del atributo
+        alert(xmlDoc.getElementsByTagName("pelicula")[0].getElementsByTagName("reparto")[0].childNodes[0].nodeValue); // Con la línea anterior se muestra 'Charlize Theron'
+        var x = xmlDoc.getElementsByTagName("pelicula")[0];
+        xmlDoc.documentElement.removeChild(x); // Borra el primer nodo 'pelicula' y todos sus hijos.
+        var cine = xmlDoc.getElementsByTagName("cine")[0];
+        var peli = xmlDoc.createElement("pelicula"); // Crea nodo pelicula.
+        var tit = xmlDoc.createElement("titulo");  // Crea nodo titulo.
+        var textTit = xmlDoc.createTextNode("Mad Max3"); // Crea un nodo texto
+        tit.appendChild(textTit); // Añade el texto al titulo
+        peli.appendChild(tit); // Añade el titulo a la peli
+        cine.appendChild(peli); // Añade la peli al nodo raíz ‘cine’
+
+        // Para listar todos los títulos.
+        var x = xmlDoc.getElementsByTagName('titulo');
+       
+        var txt = "";
+        for (i of x) {
+            var z = xmlDoc.getElementsByTagName('titulo');
+            var y = xmlDoc.getElementsByTagName('reparto');
+            txt += "Título: "+z[0].childNodes[0].nodeValue + "\n";
+            for (t of y) {
+                txt += t.childNodes[0].nodeValue + "\n";
+            }
+        }
+        alert(txt);
+
+        
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

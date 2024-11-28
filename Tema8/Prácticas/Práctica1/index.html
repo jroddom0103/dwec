@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index HTML</title>
+</head>
+<body>
+    <h2>Recibe datos en JSON desde un servidor por PHP con AJAX</h2>
+    <p id="demo"></p>
+    <script>
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                myObj = JSON.parse(this.responseText);
+                document.getElementById('demo').innerHTML = myObj.nombre;
+            }
+        };
+        xmlhttp.open('GET', "json1.php", true);
+        xmlhttp.send();
+
+        var objJS={alumnos:"Juan", curso:2};
+        var cadenaJSON=JSON.stringify(objJS);
+        localStorage.setItem("datos", cadenaJSON);
+    </script>
+    
+</body>
+</html>
