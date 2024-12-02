@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tarea1Tema7Mejorado</title>
     <style>
         .jumbotron {
             max-height: 180px;
@@ -72,7 +72,9 @@
         #cesta = []; // Productos en el carrito
 
         constructor(productos) {
+            this.recuperarCesta();
             this.#productos = productos;
+            this.mostrarCesta();
         }
 
         // Añadir un producto al carrito
@@ -102,7 +104,8 @@
                 this.#cesta.push({ ...producto, cantidad }); // Añadir copia del producto con cantidad
             }
 
-            // Actualizar la tabla de la cesta
+            // Guardar en json y actualizar la tabla de la cesta al añadir producto
+            this.guardarCesta();
             this.mostrarCesta();
         }
 
@@ -129,11 +132,23 @@
             // Filtrar los productos para eliminar el que coincida con el ID
             this.#cesta = this.#cesta.filter(producto => producto.cod !== id);
 
-            // Actualizar la tabla de la cesta
+            // Guardar en json y actualizar la tabla de la cesta al añadir producto
+            this.guardarCesta();
             this.mostrarCesta();
         }
 
+        // Guardar objeto cesta como json
+        guardarCesta(){
+            var cesta = JSON.stringify(this.#cesta);
+            localStorage.setItem('cesta', cesta);
 
+        }
+
+        // Recuperar json, convertirlo en objeto y sustituirlo por la cesta
+        recuperarCesta(){
+            var datos = localStorage.getItem('cesta');
+            this.#cesta = JSON.parse(datos);
+        }
     }
 
     class ContProductos {
