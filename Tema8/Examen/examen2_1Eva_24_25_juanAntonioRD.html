@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)http://192.168.80.105/dwec/examen2_1Eva_24_25_plantilla.html -->
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <style>
+        .centra {
+            border: 1px solid grey;
+            text-align: center;
+        }
+
+        .borde {
+            border: 1px solid grey;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script>
+
+        // Cadena 'bdDallo', contiene todos los costes en euros (materiales, mano de obra, etc...)
+        //  para realizar el escandallo de una serie de carteras de piel recibido desde una BBDD.
+
+        var bdDallo = `[{ "id": 1,
+                        "nombre": "cartera piel vacuno negra",
+                        "costes":{ "piel": 5,
+                                   "hilo": 0.80,
+                                   "rebaje": 1,
+                                   "pegamento": 0.50,
+                                   "pintura": 0.45,
+                                   "broches": 0.90,
+                                   "cosido": 1,
+                                   "fabricación": 15,
+                                   "embasado": 1}                
+                   },
+                   {    "id": 2,
+                        "nombre": "cartera piel vacuno azul",
+                        "costes":{ "piel": 6,
+                                   "hilo": 0.90,
+                                   "rebaje": 1.50,
+                                   "pegamento": 0.70,
+                                   "pintura": 0.50,
+                                   "broches": 0.80,
+                                   "cosido": 1.50,
+                                   "fabricación": 16,
+                                   "embasado": 1.20}                
+                   },
+                   {    "id": 3,
+                        "nombre": "cartera piel coco",
+                        "costes":{ "piel": 25,
+                                   "hilo": 1,
+                                   "rebaje": 1,
+                                   "pegamento": 0.70,
+                                   "pintura": 0.80,
+                                   "broches": 1,
+                                   "cosido": 3,
+                                   "fabricación": 20,
+                                   "embasado": 5}               
+                   }]`
+
+        class Secc {
+
+            #id;
+            #nombre;
+            #costes = {};
+            constructor() {
+                this.#id = id;
+                this.#nombre = nombre;
+                this.#costes = costes;
+            }
+
+            // Método que devuelve fila cabecera
+            cabecera() {
+                return `<tr>
+                <td class="centra">ID</td>
+                <td class="centra">NOMBRE</td>
+                <td class="centra">COSTE €</td>
+                </tr>`
+            }   
+
+            // Método que devuelve fila cartera
+            cartera(datosJSON){
+                return `<tr>
+                <td class="idArticulo"></td>
+                <td class="nombreArticulo"></td>
+                <td class="espacioVacio"></td>
+                </tr> `
+            }
+
+            // Método que devuelve fila coste
+            coste(datosJSON){
+                return `<tr>
+                <td class="espacioVacio"></td>
+                <td class="nombreMaterial"></td>
+                <td class="costeMaterial"></td>
+                </tr> `
+            }
+
+            // Método que devuelve fila calculoTotal
+            calculoTotal(datosJSON){
+                return `<tr>
+                <td class="espacioVacio"></td>
+                <td class="total">Total</td>
+                <td class="costeTotal"></td>
+                </tr>`
+            }
+
+        }
+
+        class Tabla{
+
+            #datosJSON;
+            #secc;
+            constructor(bdDallo){
+                this.#datosJSON = JSON.parse(bdDallo);
+                this.#secc = new Secc();
+                this.mostrarArticulos(this.#secc);
+            }
+
+            mostrarArticulos(secc){
+
+                var tabla = document.createElement('table')
+                var cabecera = secc.cabecera(this.#datosJSON);
+
+                for (let i = 0; i < this.#datosJSON.length; i++) {
+                
+                var cartera = secc.cartera(this.#datosJSON);
+                var coste = secc.coste(this.#datosJSON);
+                var calculoTotal = secc.calculoTotal(this.#datosJSON);
+                
+                // innerhtml de todas los tipos de fila
+                tabla.innerHTML = cabecera+cartera+coste+calculoTotal;
+                
+            }
+
+            document.body.appendChild(tabla);
+            }
+            
+        }
+
+        window.onload = () => new Tabla(bdDallo);
+
+    </script>
+</body>
+
+</html>
