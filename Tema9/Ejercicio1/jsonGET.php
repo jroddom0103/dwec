@@ -24,7 +24,7 @@ try {
     $stmt->fetchColumn();
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-    return $stmt;
+    echo $stmt;
     
 } catch (PDOException $e) {
 
