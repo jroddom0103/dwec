@@ -19,8 +19,8 @@ try {
     $id = $_GET['id'];
 
     // hago consulta
-    $stmt = $pdo->prepare(`SELECT * FROM datos WHERE id=:id`);
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare(`SELECT id,nombre FROM datos WHERE id=:id`);
+    $stmt->setFetchMode(PDO::FETCH_KEY_PAIR);
     $stmt->fetchColumn();
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
