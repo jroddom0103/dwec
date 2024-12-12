@@ -5,7 +5,7 @@ header("access-control-allow-origin: *");
 try {
     // nombre fuente de datos
     $server = 'localhost';
-    $db = 'tema10';
+    $db = 'tema9';
 
     $dsn = "mysql:host=" . $server . ";dbname=" . $bd;
 
