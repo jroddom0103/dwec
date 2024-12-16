@@ -5,7 +5,7 @@ header("access-control-allow-origin: *");
 try {
     // nombre fuente de datos
     $server = 'localhost';
-    $db = 'tema9';
+    $bd = 'tema9';
 
     $dsn = "mysql:host=" . $server . ";dbname=" . $bd;
 
@@ -18,13 +18,15 @@ try {
     // paso id
     $id = $_GET['id'];
 
+    $sql = `SELECT id,nombre FROM datos WHERE id=:id`;
+
     // hago consulta
-    $stmt = $pdo->prepare(`SELECT id,nombre FROM datos WHERE id=:id`);
+    $stmt = $pdo->prepare($sql);
     $stmt->setFetchMode(PDO::FETCH_KEY_PAIR);
     $stmt->fetchColumn();
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-    echo $stmt;
+    echo $stmt->fetch();
     
 } catch (PDOException $e) {
 
