@@ -162,16 +162,19 @@
             let correo = document.getElementById('correo');
             let telefono = document.getElementById('telefono');
 
-            if(!(/\d{6}/.test(bastidor.value))){
+            if(!(/[0-6]{6}/.test(bastidor.value))){
                 alert("Hubo un error en el bastidor.");  
+                e.preventDefault();
             }
             if(!(/\w@\w/.test(correo.value))){
                 alert("Hubo un error en el correo");
+                e.preventDefault();
             }
-            if(!(/\d{9}/.test(telefono.value))){
+            if(!(/[0-9]{9}$/.test(telefono.value))){
                 alert("Hubo un error en el teléfono");
+                e.preventDefault();
             }
-            e.preventDefault();
+            
         }
     };
 </script>
