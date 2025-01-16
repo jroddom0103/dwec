@@ -20,6 +20,10 @@
             flex-direction: column;
             align-items: center;
         }
+
+        #input:invalid{
+            border-color: rgb(232, 62, 59);
+        }
     </style>
 </head>
 
@@ -28,12 +32,12 @@
     <form action="" id="formulario">
         <div id="divUsuario">
             <label for="">Usuario</label>
-            <input type="text">
+            <input type="text" id="usuario" required>
         </div>
 
         <div id="divContrasena">
             <label for="">Contraseña</label>
-            <input type="text" id="contrasena">
+            <input type="text" id="contrasena" pattern="" required>
         </div>
     </form>
 
@@ -45,12 +49,27 @@
 
         constructor() {
             this.usuarios = [
-                [usuario1 => "admin1", contrasena1 => "admin1"],
-                [usuario2 => "admin2", contrasena2 => "admin2"],
-                [usuario3 => "admin3", contrasena3 => "admin3"]
+                [usuario => "admin1", contrasena => "contrasena1"],
+                [usuario => "admin2", contrasena => "contrasena2"],
+                [usuario => "admin3", contrasena => "contrasena3"]
             ]
         }
     }
+
+    let login = new Login();
+    let esValido = false;
+
+    let usuarioInput = document.getElementById('usuario');
+    let contrasenaInput = document.getElementById('contrasena');
+
+    login.usuarios.forEach(usuario => {
+        login.usuarios.forEach(contrasena => {
+            if(usuario == Input && contrasena == contrasenaInput){
+                esValido = true;
+            }
+        })
+    });
+    
 </script>
 
 </html>
