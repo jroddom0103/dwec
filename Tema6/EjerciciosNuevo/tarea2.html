@@ -15,28 +15,42 @@
     <title>Tarea2</title>
 
     <style>
-        
         div {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
-    </style>    
+    </style>
 </head>
 
 <body>
 
-    <div id="divUsuario">
-        <label for="">Usuario</label>
-        <input type="text">
-    </div>
+    <form action="" id="formulario">
+        <div id="divUsuario">
+            <label for="">Usuario</label>
+            <input type="text">
+        </div>
 
-    <div id="divContrasena">
-        <label for="">Contraseña</label>
-        <input type="text">
-    </div>
+        <div id="divContrasena">
+            <label for="">Contraseña</label>
+            <input type="text" id="contrasena">
+        </div>
+    </form>
 
 </body>
+
+<script>
+
+    class Login {
+
+        constructor() {
+            this.usuarios = [
+                [usuario1 => "admin1", contrasena1 => "admin1"],
+                [usuario2 => "admin2", contrasena2 => "admin2"],
+                [usuario3 => "admin3", contrasena3 => "admin3"]
+            ]
+        }
+    }
+</script>
 
 </html>
