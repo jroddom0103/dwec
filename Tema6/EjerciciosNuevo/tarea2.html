@@ -21,8 +21,13 @@
             align-items: center;
         }
 
-        #input:invalid{
+        #input:invalid {
             border-color: rgb(232, 62, 59);
+        }
+
+        button {
+            margin-left: 428px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -37,8 +42,12 @@
 
         <div id="divContrasena">
             <label for="">Contraseña</label>
-            <input type="text" id="contrasena" pattern="" required>
+            <input type="text" id="contrasena" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$" required>
         </div>
+
+        <div id="divMensaje"></div>
+
+        <button id="boton" type="submit">Ingresar</button>
     </form>
 
 </body>
@@ -49,27 +58,47 @@
 
         constructor() {
             this.usuarios = [
-                [usuario => "admin1", contrasena => "contrasena1"],
-                [usuario => "admin2", contrasena => "contrasena2"],
-                [usuario => "admin3", contrasena => "contrasena3"]
+                [usuario => "admin1", contrasena => "Contrasena1@123"],
+                [usuario => "admin2", contrasena => "Contrasena2@123"],
+                [usuario => "admin3", contrasena => "Contrasena3@123"]
             ]
+        }
+
+        verificarUsuario(usuarioInput, contrasenaInput){
+            return this.usuarios.some(usuario => usuario[0] === usuarioInput && usuario[1] === contrasenaInput);
         }
     }
 
-    let login = new Login();
-    let esValido = false;
+    document.addEventListener('DOMContentLoaded', () => {
+        let login = new Login();
 
-    let usuarioInput = document.getElementById('usuario');
-    let contrasenaInput = document.getElementById('contrasena');
+        let usuarioInput = document.getElementById('usuario');
+        let contrasenaInput = document.getElementById('contrasena');
+        let divMensaje = document.getElementById('divMensaje');
 
-    login.usuarios.forEach(usuario => {
-        login.usuarios.forEach(contrasena => {
-            if(usuario == Input && contrasena == contrasenaInput){
-                esValido = true;
+        let mensajeDiv1 = `
+            <p>Usuario: ${usuarioInput.value}</p>
+            <p>Contraseña: ${contrasenaInput.value}</p>
+            <p>Acceso concedido</p>
+            `
+
+        let mensajeDiv2 = `
+            <p>Usuario: ${usuarioInput.value}</p>
+            <p>Contraseña: ${contrasenaInput.value}</p>
+            <p>Acceso no concedido</p>
+            `    
+
+        boton.addEventListener('click', (e) => {
+            if(login.verificarUsuario(usuarioInput, contrasenaInput)){
+                divMensaje.innerHTML = mensajeDiv1;
+                e.preventDefault();
+            } else {
+                divMensaje.innerHTML = mensajeDiv2;
+                e.preventDefault();
             }
-        })
+        });
     });
-    
+
 </script>
 
 </html>
