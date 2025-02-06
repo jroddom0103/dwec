@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica2</title>
+</head>
+<body>
+
+    <button type="button" onclick="funAjax()">Mostrar información JSON</button>
+    <div id="respuesta"></div>
+
+    <script>
+
+        function funAjax(){
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    let obj = JSON.parse(this.responseText);
+                    document.getElementById('respuesta').innerHTML = 
+                    `Nombre: ${$obj.nombre}
+                     Ciudad: ${$obj.ciudad}` 
+                }
+            }
+            xhttp.open("GET", "jsonGET.php?nombre=Pepito&ciudad=Madrid", true);
+            xhttp.send();
+        }
+
+    </script>
+
+</body>
+</html>
