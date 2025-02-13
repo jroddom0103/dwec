@@ -36,7 +36,7 @@ try {
         }
     } else {
         //Consulta para obtener todos los nombres
-        $sql = "SELECT id, nombre, apellidos, ciudad FROM datos";
+        $sql = "SELECT id, nombre FROM datos";
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
