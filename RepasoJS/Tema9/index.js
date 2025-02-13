@@ -1,3 +1,4 @@
+/*
 fetch("jsonGET.php")
     .then(result => result.json())
     .then(function (obj) {
@@ -21,3 +22,5 @@ fetch("jsonGET.php")
 
     })
     .catch(e => console.log(`Error capturado:  ${e}`));
+*/
+
