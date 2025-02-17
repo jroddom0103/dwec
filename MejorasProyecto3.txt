@@ -1,0 +1,29 @@
+Sebastián, Pablo, Raquel, David:
+
+Hay sonidos en la página de ubrique que se escuchan bajitos.
+Tampoco se puede parar el audio.
+Faltan derechos de la propia página.
+En la pantalla de inicio hay pop ups que tapan cierta parte de la página.
+
+-------------------------------------------------------------------------
+
+Javier, Juan, Samuel:
+
+El tamaño del botón para cambiar al modo oscuro difiere en distintas páginas.
+
+-------------------------------------------------------------------------
+
+Nuestro Proyecto:
+
+Los derechos de autor de las imágenes de Pixabay.
+Usar distintos formatos de imágenes para adaptar a cada dispositivo.
+
+-------------------------------------------------------------------------
+
+Marcos, Juan Manuel, Rafael:
+
+Usar CDN.
+Hover en ambos temas.
+
+-------------------------------------------------------------------------
+
