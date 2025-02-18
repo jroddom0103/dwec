@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema9Tarea1</title>
+    <style>
+        #datos {
+            width: 200px;
+        }
+
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 200px;
+        }
+
+        table td,
+        table th {
+            border: 1px solid #ddd;
+            padding: 15px;
+            width: 40px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+
+<body>
+    <select id="datos" class="form-select" aria-label="Default select example">
+        <option value="" selected disabled>Elige un nombre:</option>
+    </select>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <td id="id"></td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td id="nombre"></td>
+        </tr>
+        <tr>
+            <th>Apellidos</th>
+            <td id="apellidos"></td>
+        </tr>
+        <tr>
+            <th>Ciudad</th>
+            <td id="ciudad"></td>
+        </tr>
+    </table>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
