@@ -80,11 +80,12 @@
                             // Respuesta PHP
                             let obj = JSON.parse(this.responseText);
 
+
                             // Reiniciar datos de la tabla para no añadir más de 3 filas
                             document.getElementById("datos").innerHTML = '';
 
                             // Bucle para cada nombre de cada equipo
-                            for (let i = 0; i < 3; i++) {
+                            for (let i = 0; i < obj.equipo1.length; i++) {
                                 let equipos = new Team_Row(obj.equipo1[i], obj.equipo2[i]);
                                 
                                 let fila = equipos.get_row();
